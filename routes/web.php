@@ -1,17 +1,17 @@
 <?php
 
-Route::get('/', function () {
+$router->get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+$router->auth();
 
-Route::get('/home', 'HomeController@index');
+$router->get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => '/notes'], function () {
-    Route::get('/', 'NoteController@index');
-    Route::get('/{note}', 'NoteController@show');
-    Route::post('/', 'NoteController@store');
-    Route::patch('/{note}', 'NoteController@update');
-    Route::delete('/{note}', 'NoteController@destroy');
+$router->group(['prefix' => '/notes'], function ($router) {
+    $router->get('/', 'NoteController@index');
+    $router->get('/{note}', 'NoteController@show');
+    $router->post('/', 'NoteController@store');
+    $router->patch('/{note}', 'NoteController@update');
+    $router->delete('/{note}', 'NoteController@destroy');
 });
