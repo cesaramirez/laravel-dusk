@@ -32,6 +32,17 @@ return [
     */
 
     'connections' => [
+        'testing' => [
+            'driver' => 'sqlite',
+            'database' =>  ':memory:',
+            'prefix' => '',
+        ],
+
+        'testing_browser' => [
+            'driver' => 'sqlite',
+            'database' =>  database_path('testing_browser.sqlite'),
+            'prefix' => '',
+        ],
 
         'sqlite' => [
             'driver' => 'sqlite',
