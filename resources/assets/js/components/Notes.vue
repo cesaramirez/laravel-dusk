@@ -1,17 +1,37 @@
 <template>
-    <div class="notes">
+    <div>
         <div v-if="notes.length">
-            <ul class="list-group">
-                <li class="list-group-item">You have {{ notesCount }} {{ pluralize('note', notesCount) }}</li>
-                <li class="list-group-item" v-for="note in notes">
-                    <a href="#" @click.prevent="loadNote(note.id)">{{ note.title }}</a>
-                    <a href="#" @click.prevent="deleteNote(note.id)">Delete</a>
+            <ul class="uk-list uk-list-divider">
+                <li>
+                  <h4 class="uk-heading-line uk-text-center">
+                      <span>
+                        You have {{ notesCount }} {{ pluralize('note', notesCount) }}
+                      </span>
+                  </h4>
+                </li>
+                <li v-for="note in notes">
+                    <a  class="uk-button"
+                        href="#"
+                        @click.prevent="loadNote(note.id)">
+                        {{ note.title | truncate(15, '...') }}
+                    </a>
+                    <a  class="uk-button uk-button-danger uk-align-right"
+                        href="#"
+                        @click.prevent="deleteNote(note.id)">Delete
+                      </a>
                 </li>
             </ul>
-
-            <a href="#" @click.prevent="newNote">Create new note</a>
+            <hr>
+            <a  class="uk-button uk-button-secondary uk-width-1-1"
+                href="#"
+                @click.prevent="newNote">Create new note
+            </a>
         </div>
-        <p v-else>No notes yet</p>
+        <h4 class="uk-heading-line uk-text-center" v-else>
+            <span>
+              No notes yet
+            </span>
+        </h4>
     </div>
 </template>
 
@@ -40,10 +60,3 @@
         }
     }
 </script>
-
-<style>
-    .list-group-item {
-        display: flex;
-        justify-content: space-between;
-    }
-</style>

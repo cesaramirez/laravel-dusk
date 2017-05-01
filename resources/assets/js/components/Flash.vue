@@ -1,6 +1,6 @@
 <template>
-    <div class="alert alert-info" v-if="flash">
-        {{ flash }}
+    <div v-if="flash">
+        {{ noti(flash) }}
     </div>
 </template>
 
@@ -12,6 +12,12 @@
             ...mapGetters({
                 flash: 'flash'
             })
+        },
+        methods: {
+          noti: function(flash) {
+            UIkit.notification("<span uk-icon='icon: check'></span> " + flash, {status: 'success'});
+          }
+
         }
     }
 </script>

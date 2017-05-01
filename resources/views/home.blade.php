@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="uk-container">
         <flash></flash>
-        <div class="row">
-            <div class="col-sm-4">
+        <div uk-grid>
+            <div class="uk-width-1-3@m uk-margin-top">
                 <notes></notes>
             </div>
-            <div class="col-sm-8">
+            <div class="uk-width-2-3@m uk-margin-top">
                 <note></note>
             </div>
         </div>

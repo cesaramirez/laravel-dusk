@@ -1,19 +1,31 @@
 <template>
-    <div class="panel panel-default note">
-        <div class="panel-heading">{{ note.title || 'Untitled' }}</div>
-
-        <div class="panel-body">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Note title" v-model="title" id="title">
+    <div class="uk-card uk-card-default uk-card-hover">
+        <div class="uk-card-header">
+            <div class="uk-card-title">
+                {{ note.title || 'Untitled' }}
             </div>
-            <div class="form-group">
-                <textarea rows="10" class="form-control" placeholder="Your notes" v-model="body" id="body"></textarea>
+            <div class="uk-card-body">
+                <div class="uk-margin">
+                    <input  class="uk-input"
+                            placeholder="Note Title"
+                            v-model="title"
+                            id="title">
+                </div>
+                <textarea class="uk-textarea"
+                          rows="6"
+                          v-model="body"
+                          id="body"
+                          placeholder="Your Notes">
+                </textarea>
+                <p>Word count: {{ noteWordCount }}</p>
             </div>
-
-            <p>Word count: {{ noteWordCount }}</p>
-
-            <button type="submit" class="btn btn-default" @click.prevent="saveNote">Save</button>
+            <div class="uk-card-footer">
+                <button type="submit"
+                        class="uk-button uk-button-primary" @click.prevent="saveNote">Save
+                </button>
+            </div>
         </div>
+
     </div>
 </template>
 

@@ -27,7 +27,6 @@ export const newNote = ({ commit, dispatch, state }) => {
     dispatch('saveNote', false).then(() => {
         commit('clearNote')
     })
-
     dispatch('flash', 'A fresh note has been created.')
 }
 
