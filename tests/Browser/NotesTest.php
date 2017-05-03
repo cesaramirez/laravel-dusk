@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Note;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -136,6 +137,29 @@ class NotesTest extends DuskTestCase
                     ->assertSee('No notes yet')
                     ->assertDontSeeIn('.notes', 'You have one note')
                     ->assertMissing('.notes ul li:nth-child(2)');
+        });
+    }
+
+    /**
+     * @test A User Can Save A New Note
+     *
+     * @return void
+     */
+    public function aUserCanOpenAPreviousNote()
+    {
+        $user = factory(User::class)->create();
+        $note = factory(Note::class)->create([
+            'user_id' => $user->id
+        ]);
+
+        $this->browse(function (Browser $browser) use ($user, $note) {
+            $browser->loginAs($user)
+                    ->visit(new Notes)
+                    ->pause(1000)
+                    ->clickLink($note->title)
+                    ->pause(500)
+                    ->assertInputValue('#title', $note->title)
+                    ->assertInputValue('#body', $note->body);
         });
     }
 }
