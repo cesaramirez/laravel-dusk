@@ -23,8 +23,8 @@
             </ul>
             <hr>
             <a  class="uk-button uk-button-secondary uk-width-1-1"
-                href="#"
-                @click.prevent="newNote">Create new note
+                href='#'
+                @click.prevent='newNote'>Create new note
             </a>
         </div>
         <h4 class="uk-heading-line uk-text-center" v-else>
