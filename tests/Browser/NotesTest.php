@@ -90,4 +90,52 @@ class NotesTest extends DuskTestCase
                     ->assertInputValue('#body', '');
         });
     }
+
+    /**
+     * @test A User Can Save A New Note
+     *
+     * @return void
+     */
+    public function aUsersCurrentNoteIsSavedWhenStartingANewNote()
+    {
+        $user = factory(User::class)->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                    ->visit(new Notes)
+                    ->typeNote('One', 'First Note')
+                    ->saveNote()
+                    ->pause(500)
+                    ->type('#title', 'One updated')
+                    ->type('#body', 'First note updated')
+                    ->clickLink('Create new note')
+                    ->pause(500)
+                    ->assertSeeIn('.uk-list', 'ONE UPDATED')
+                    ->clickLink('One updated')
+                    ->pause(500)
+                    ->assertInputValue('#title', 'One updated')
+                    ->assertInputValue('#body', 'First note updated');
+        });
+    }
+
+    /**
+     * @test A User Can Save A New Note
+     *
+     * @return void
+     */
+    public function aUserCantSaveNoteWithNoTitle()
+    {
+        $user = factory(User::class)->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                    ->visit(new Notes)
+                    ->saveNote()
+                    ->pause(500)
+                    ->assertMissing('.uk-notification')
+                    ->assertSee('No notes yet')
+                    ->assertDontSeeIn('.notes', 'You have one note')
+                    ->assertMissing('.notes ul li:nth-child(2)');
+        });
+    }
 }

@@ -50863,7 +50863,9 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.notes.length) ? _c('div', [_c('ul', {
+  return _c('div', {
+    staticClass: "notes"
+  }, [(_vm.notes.length) ? _c('div', [_c('ul', {
     staticClass: "uk-list uk-list-divider"
   }, [_c('li', [_c('h4', {
     staticClass: "uk-heading-line uk-text-center"

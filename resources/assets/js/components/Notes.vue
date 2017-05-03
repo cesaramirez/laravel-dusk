@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="notes">
         <div v-if="notes.length">
             <ul class="uk-list uk-list-divider">
                 <li>
