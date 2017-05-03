@@ -162,4 +162,57 @@ class NotesTest extends DuskTestCase
                     ->assertInputValue('#body', $note->body);
         });
     }
+
+    /**
+     * @test A User Can Save A New Note
+     *
+     * @return void
+     */
+    public function aUserCanDeleteNotes()
+    {
+        $user = factory(User::class)->create();
+        $notes = factory(Note::class, 2)->create([
+            'user_id' => $user->id
+        ]);
+
+        $this->browse(function (Browser $browser) use ($user, $notes) {
+            $browser->loginAs($user)
+                    ->visit(new Notes)
+                    ->pause(500);
+
+            foreach ($notes as $note) {
+                $browser->click('.notes .uk-list > li:nth-child(2) a:nth-child(2)')
+                        ->pause(500)
+                        ->assertSeeIn('.uk-notification', 'Your note has been deleted.')
+                        ->assertDontSeeIn('.notes', $note->title);
+            }
+
+            $browser->pause(500)
+                    ->assertSeeIn('.notes', 'No notes yet');
+        });
+    }
+
+    /**
+     * @test A User Can Save A New Note
+     *
+     * @return void
+     */
+    public function aUsersNoteIsClearedWhenDeletedIfCurrentlyBeingViewed()
+    {
+        $user = factory(User::class)->create();
+        $note = factory(Note::class)->create([
+            'user_id' => $user->id
+        ]);
+
+        $this->browse(function (Browser $browser) use ($user, $note) {
+            $browser->loginAs($user)
+                    ->visit(new Notes)
+                    ->pause(500)
+                    ->clickLInk($note->title)
+                    ->pause(500)
+                    ->click('.notes .uk-list > li:nth-child(2) a:nth-child(2)')
+                    ->assertInputValue('#title', '')
+                    ->assertInputValue('#body', '');
+        });
+    }
 }
