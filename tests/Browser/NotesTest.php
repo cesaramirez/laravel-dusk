@@ -4,6 +4,7 @@ namespace Tests\Browser;
 
 use App\Note;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\Notes;
@@ -213,6 +214,34 @@ class NotesTest extends DuskTestCase
                     ->click('.notes .uk-list > li:nth-child(2) a:nth-child(2)')
                     ->assertInputValue('#title', '')
                     ->assertInputValue('#body', '');
+        });
+    }
+
+    /**
+     * @test A User Can Save A New Note
+     *
+     * @return void
+     */
+    public function aUsersNotesAreOrderedByLastUpdatedInDescendingOrder()
+    {
+        $user = factory(User::class)->create();
+        $notes = factory(Note::class, 3)->create([
+            'user_id'    => $user->id,
+            'updated_at' => Carbon::now()->subDays(2)
+        ]);
+
+        $this->browse(function (Browser $browser) use ($user, $notes) {
+            $browser->loginAs($user)
+                    ->visit(new Notes)
+                    ->pause(500);
+
+            foreach ($notes as $note) {
+                $browser->clickLink($note->title)
+                        ->typeNote($newTitle = $note->title . ' updated', 'Woo')
+                        ->saveNote()
+                        ->pause(1000)
+                        ->assertSeeIn('.notes .uk-list > li:nth-child(2)', strtoupper($newTitle));
+            }
         });
     }
 }
