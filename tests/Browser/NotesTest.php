@@ -233,15 +233,20 @@ class NotesTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $notes) {
             $browser->loginAs($user)
                     ->visit(new Notes)
-                    ->pause(500);
+                    ->pause(500)
+                    ->screenshot('before_sorting');
 
             foreach ($notes as $note) {
                 $browser->clickLink($note->title)
+                        ->pause(500)
                         ->typeNote($newTitle = $note->title . ' updated', 'Woo')
+                        ->pause(500)
                         ->saveNote()
                         ->pause(1000)
                         ->assertSeeIn('.notes .uk-list > li:nth-child(2)', strtoupper($newTitle));
             }
+
+            $browser->screenshot('after_sorting');
         });
     }
 }

@@ -50871,7 +50871,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "uk-heading-line uk-text-center"
   }, [_c('span', [_vm._v("\n                    You have " + _vm._s(_vm.notesCount) + " " + _vm._s(_vm.pluralize('note', _vm.notesCount)) + "\n                  ")])])]), _vm._v(" "), _vm._l((_vm.notes), function(note) {
     return _c('li', [_c('a', {
-      staticClass: "uk-button uk-text-small",
+      staticClass: "uk-button",
       attrs: {
         "href": "#"
       },

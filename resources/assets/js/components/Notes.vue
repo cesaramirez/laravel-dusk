@@ -10,7 +10,7 @@
                   </h4>
                 </li>
                 <li v-for="note in notes">
-                    <a  class="uk-button uk-text-small"
+                    <a  class="uk-button"
                         href="#"
                         @click.prevent="loadNote(note.id)">
                         {{ note.title | truncate(15, '...') }}
