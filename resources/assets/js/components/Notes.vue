@@ -1,6 +1,6 @@
 <template>
     <div class="notes">
-        <div v-if="notes.length">
+        <div v-if="notes.length" class="uk-card uk-card-body uk-card-default">
             <ul class="uk-list uk-list-divider">
                 <li>
                   <h4 class="uk-heading-line uk-text-center">
@@ -9,13 +9,16 @@
                       </span>
                   </h4>
                 </li>
-                <li v-for="note in notes">
-                    <a  class="uk-button"
+                <li v-for="note in notes"
+                    class="uk-child-width-1-1@s" uk-grid>
+                    <a  class="uk-button uk-text-left uk-margin-remove"
                         href="#"
                         @click.prevent="loadNote(note.id)">
-                        {{ note.title | truncate(15, '...') }}
+                        {{ note.title }}
                     </a>
-                    <a  class="uk-button uk-button-danger uk-align-right"
+                    <a  class="uk-button uk-button-danger
+                               uk-align-right
+                               uk-margin-small"
                         href="#"
                         @click.prevent="deleteNote(note.id)">Delete
                       </a>

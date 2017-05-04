@@ -28,12 +28,25 @@ class Notes extends BasePage
         $browser->assertPathIs($this->url());
     }
 
+    /**
+     * Type Note
+     *
+     * @param  \Laravel\Dusk\Browser $browser
+     * @param  string  $title
+     * @param  string  $body
+     * @return void
+     */
     public function typeNote(Browser $browser, $title = null, $body = null)
     {
         $browser->type('@title', $title)
                 ->type('@body', $body);
     }
 
+    /**
+     * Save Note
+     * @param  \Laravel\Dusk\Browser $browser
+     * @return void
+     */
     public function saveNote(Browser $browser)
     {
         $browser->press('SAVE');

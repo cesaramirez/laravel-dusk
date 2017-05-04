@@ -15,7 +15,7 @@
         },
         methods: {
           noti: function(flash) {
-            UIkit.notification("<span uk-icon='icon: check'></span> " + flash, {status: 'success'});
+            UIkit.notification("<span uk-icon='icon: check'></span> " + flash, {status: 'success', timeout: 750});
           }
 
         }

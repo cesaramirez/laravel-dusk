@@ -28,6 +28,14 @@ class Register extends BasePage
         $browser->assertPathIs($this->url());
     }
 
+    /**
+     * Sign Up
+     * @param  \Laravel\Dusk\Browser $browser
+     * @param  string  $name
+     * @param  string  $email
+     * @param  string  $password
+     * @return void          
+     */
     public function signUp(
           Browser $browser,
           $name = null,

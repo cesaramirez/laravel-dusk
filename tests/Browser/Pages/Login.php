@@ -28,6 +28,14 @@ class Login extends BasePage
         $browser->assertPathIs($this->url());
     }
 
+    /**
+     * Sign In User
+     *
+     * @param  \Laravel\Dusk\Browser $browser
+     * @param  string  $email
+     * @param  string  $password
+     * @return void
+     */
     public function signIn(Browser $browser, $email = null, $password = null)
     {
         $browser->type('@email', $email)

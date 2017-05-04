@@ -11,8 +11,9 @@ use Tests\DuskTestCase;
 class LoginTest extends DuskTestCase
 {
     use DatabaseMigrations;
+    
     /**
-     * @test A Dusk test example.
+     * @test A User Can Sign In.
      *
      * @return void
      */

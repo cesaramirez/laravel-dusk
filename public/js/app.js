@@ -29454,7 +29454,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     })),
     methods: {
         noti: function (flash) {
-            UIkit.notification("<span uk-icon='icon: check'></span> " + flash, { status: 'success' });
+            UIkit.notification("<span uk-icon='icon: check'></span> " + flash, { status: 'success', timeout: 750 });
         }
 
     }
@@ -29547,6 +29547,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
 //
 //
 //
@@ -50865,13 +50868,20 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "notes"
-  }, [(_vm.notes.length) ? _c('div', [_c('ul', {
+  }, [(_vm.notes.length) ? _c('div', {
+    staticClass: "uk-card uk-card-body uk-card-default"
+  }, [_c('ul', {
     staticClass: "uk-list uk-list-divider"
   }, [_c('li', [_c('h4', {
     staticClass: "uk-heading-line uk-text-center"
   }, [_c('span', [_vm._v("\n                    You have " + _vm._s(_vm.notesCount) + " " + _vm._s(_vm.pluralize('note', _vm.notesCount)) + "\n                  ")])])]), _vm._v(" "), _vm._l((_vm.notes), function(note) {
-    return _c('li', [_c('a', {
-      staticClass: "uk-button",
+    return _c('li', {
+      staticClass: "uk-child-width-1-1@s",
+      attrs: {
+        "uk-grid": ""
+      }
+    }, [_c('a', {
+      staticClass: "uk-button uk-text-left uk-margin-remove",
       attrs: {
         "href": "#"
       },
@@ -50881,8 +50891,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.loadNote(note.id)
         }
       }
-    }, [_vm._v("\n                    " + _vm._s(_vm._f("truncate")(note.title, 15, '...')) + "\n                ")]), _vm._v(" "), _c('a', {
-      staticClass: "uk-button uk-button-danger uk-align-right",
+    }, [_vm._v("\n                    " + _vm._s(note.title) + "\n                ")]), _vm._v(" "), _c('a', {
+      staticClass: "uk-button uk-button-danger\n                           uk-align-right\n                           uk-margin-small",
       attrs: {
         "href": "#"
       },
@@ -50928,7 +50938,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "uk-card-title"
   }, [_vm._v("\n            " + _vm._s(_vm.note.title || 'Untitled') + "\n        ")]), _vm._v(" "), _c('div', {
-    staticClass: "uk-card-body"
+    staticClass: "uk-card-body uk-padding-remove-horizontal"
   }, [_c('div', {
     staticClass: "uk-margin"
   }, [_c('input', {
@@ -50975,9 +50985,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('p', [_vm._v("Word count: " + _vm._s(_vm.noteWordCount))])]), _vm._v(" "), _c('div', {
-    staticClass: "uk-card-footer"
+    staticClass: "uk-card-footer uk-padding-remove-horizontal"
   }, [_c('button', {
-    staticClass: "uk-button uk-button-primary",
+    staticClass: "uk-button uk-button-primary uk-width-1-1",
     attrs: {
       "type": "submit"
     },

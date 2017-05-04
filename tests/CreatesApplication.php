@@ -21,12 +21,20 @@ trait CreatesApplication
         return $app;
     }
 
+    /**
+     * Execute Artisan command migrate on set up test
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
         Artisan::call('migrate');
     }
 
+    /**
+     * Execute Artisan command migrate:reset on finish test
+     * @return void
+     */
     public function tearDown()
     {
         Artisan::call('migrate:reset');

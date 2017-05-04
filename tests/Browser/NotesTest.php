@@ -46,7 +46,8 @@ class NotesTest extends DuskTestCase
                     ->typeNote('One', 'Some body')
                     ->saveNote()
                     ->pause(500)
-                    ->assertSeeIn('.uk-notification', 'Your new note has been saved.')
+                    ->assertSeeIn('.uk-notification',
+                                  'Your new note has been saved.')
                     ->assertSeeIn('.uk-list', 'ONE')
                     ->assertInputValue('#title', 'One')
                     ->assertInputValue('#body', 'Some body');
@@ -54,7 +55,7 @@ class NotesTest extends DuskTestCase
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A User Can See The Word Count Of Their Note
      *
      * @return void
      */
@@ -71,7 +72,7 @@ class NotesTest extends DuskTestCase
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A User Can Start A Fresh Note
      *
      * @return void
      */
@@ -87,14 +88,15 @@ class NotesTest extends DuskTestCase
                     ->pause(500)
                     ->clickLink('Create new note')
                     ->pause(500)
-                    ->assertSeeIn('.uk-notification', 'A fresh note has been created.')
+                    ->assertSeeIn('.uk-notification',
+                                  'A fresh note has been created.')
                     ->assertInputValue('#title', '')
                     ->assertInputValue('#body', '');
         });
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A Users Current Note Is Saved When Starting A New Note
      *
      * @return void
      */
@@ -121,7 +123,7 @@ class NotesTest extends DuskTestCase
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A User Cant Save Note With No Title
      *
      * @return void
      */
@@ -142,7 +144,7 @@ class NotesTest extends DuskTestCase
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A User Can Open A Previous Note
      *
      * @return void
      */
@@ -165,7 +167,7 @@ class NotesTest extends DuskTestCase
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A User Can Delete Notes
      *
      * @return void
      */
@@ -182,9 +184,11 @@ class NotesTest extends DuskTestCase
                     ->pause(500);
 
             foreach ($notes as $note) {
-                $browser->click('.notes .uk-list > li:nth-child(2) a:nth-child(2)')
+                $browser->click('.notes .uk-list > li:nth-child(2)
+                                 a:nth-child(2)')
                         ->pause(500)
-                        ->assertSeeIn('.uk-notification', 'Your note has been deleted.')
+                        ->assertSeeIn('.uk-notification',
+                                      'Your note has been deleted.')
                         ->assertDontSeeIn('.notes', $note->title);
             }
 
@@ -194,7 +198,7 @@ class NotesTest extends DuskTestCase
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A Users Note Is Cleared When Deleted If Currently Being Viewed
      *
      * @return void
      */
@@ -218,7 +222,7 @@ class NotesTest extends DuskTestCase
     }
 
     /**
-     * @test A User Can Save A New Note
+     * @test A Users Notes Are Ordered By Last Updated In Descending Order
      *
      * @return void
      */
@@ -239,11 +243,13 @@ class NotesTest extends DuskTestCase
             foreach ($notes as $note) {
                 $browser->clickLink($note->title)
                         ->pause(500)
-                        ->typeNote($newTitle = $note->title . ' updated', 'Woo')
+                        ->typeNote($newTitle = $note->title . ' updated',
+                                   'Woo')
                         ->pause(500)
                         ->saveNote()
                         ->pause(1000)
-                        ->assertSeeIn('.notes .uk-list > li:nth-child(2)', strtoupper($newTitle));
+                        ->assertSeeIn('.notes .uk-list > li:nth-child(2)',
+                                      strtoupper($newTitle));
             }
 
             $browser->screenshot('after_sorting');

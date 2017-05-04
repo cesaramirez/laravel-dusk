@@ -4,7 +4,7 @@
             <div class="uk-card-title">
                 {{ note.title || 'Untitled' }}
             </div>
-            <div class="uk-card-body">
+            <div class="uk-card-body uk-padding-remove-horizontal">
                 <div class="uk-margin">
                     <input  class="uk-input"
                             placeholder="Note Title"
@@ -19,9 +19,9 @@
                 </textarea>
                 <p>Word count: {{ noteWordCount }}</p>
             </div>
-            <div class="uk-card-footer">
+            <div class="uk-card-footer uk-padding-remove-horizontal">
                 <button type="submit"
-                        class="uk-button uk-button-primary" @click.prevent="saveNote">Save
+                        class="uk-button uk-button-primary uk-width-1-1" @click.prevent="saveNote">Save
                 </button>
             </div>
         </div>
