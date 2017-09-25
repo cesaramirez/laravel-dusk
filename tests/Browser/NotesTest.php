@@ -40,14 +40,16 @@ class NotesTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
 
-        $this->browse(function(Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                     ->visit(new Notes)
                     ->typeNote('One', 'Some body')
                     ->saveNote()
                     ->pause(500)
-                    ->assertSeeIn('.uk-notification',
-                                  'Your new note has been saved.')
+                    ->assertSeeIn(
+                        '.uk-notification',
+                                  'Your new note has been saved.'
+                    )
                     ->assertSeeIn('.uk-list', 'ONE')
                     ->assertInputValue('#title', 'One')
                     ->assertInputValue('#body', 'Some body');
@@ -63,7 +65,7 @@ class NotesTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
 
-        $this->browse(function(Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                     ->visit(new Notes)
                     ->typeNote('One', 'There are five words here')
@@ -80,7 +82,7 @@ class NotesTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
 
-        $this->browse(function(Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                     ->visit(new Notes)
                     ->typeNote('One', 'First Note')
@@ -88,8 +90,10 @@ class NotesTest extends DuskTestCase
                     ->pause(500)
                     ->clickLink('Create new note')
                     ->pause(500)
-                    ->assertSeeIn('.uk-notification',
-                                  'A fresh note has been created.')
+                    ->assertSeeIn(
+                        '.uk-notification',
+                                  'A fresh note has been created.'
+                    )
                     ->assertInputValue('#title', '')
                     ->assertInputValue('#body', '');
         });
@@ -186,9 +190,11 @@ class NotesTest extends DuskTestCase
             foreach ($notes as $note) {
                 $browser->click('.notes .uk-list > li:nth-child(2)
                                  a:nth-child(2)')
-                        ->pause(500)
-                        ->assertSeeIn('.uk-notification',
-                                      'Your note has been deleted.')
+                        ->pause(700)
+                        ->assertSeeIn(
+                            '.uk-notification',
+                            'Your note has been deleted.'
+                        )
                         ->assertDontSeeIn('.notes', $note->title);
             }
 
@@ -243,13 +249,17 @@ class NotesTest extends DuskTestCase
             foreach ($notes as $note) {
                 $browser->clickLink($note->title)
                         ->pause(500)
-                        ->typeNote($newTitle = $note->title . ' updated',
-                                   'Woo')
+                        ->typeNote(
+                            $newTitle = $note->title . ' updated',
+                                   'Woo'
+                        )
                         ->pause(500)
                         ->saveNote()
                         ->pause(1000)
-                        ->assertSeeIn('.notes .uk-list > li:nth-child(2)',
-                                      strtoupper($newTitle));
+                        ->assertSeeIn(
+                            '.notes .uk-list > li:nth-child(2)',
+                                      strtoupper($newTitle)
+                        );
             }
 
             $browser->screenshot('after_sorting');
