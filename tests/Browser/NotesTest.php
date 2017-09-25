@@ -218,12 +218,12 @@ class NotesTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $note) {
             $browser->loginAs($user)
                     ->visit(new Notes)
-                    ->pause(500)
-                    ->clickLInk($note->title)
-                    ->pause(500)
+                    ->pause(700)
+                    ->clickLink($note->title)
+                    ->pause(700)
                     ->click('.notes .uk-list > li:nth-child(2) a:nth-child(2)')
-                    ->assertInputValue('#title', '')
-                    ->assertInputValue('#body', '');
+                    ->assertInputValue('#title', $note->title)
+                    ->assertInputValue('#body', $note->body);
         });
     }
 
@@ -243,7 +243,7 @@ class NotesTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $notes) {
             $browser->loginAs($user)
                     ->visit(new Notes)
-                    ->pause(500)
+                    ->pause(700)
                     ->screenshot('before_sorting');
 
             foreach ($notes as $note) {
@@ -251,7 +251,7 @@ class NotesTest extends DuskTestCase
                         ->pause(500)
                         ->typeNote(
                             $newTitle = $note->title . ' updated',
-                                   'Woo'
+                            'Woo'
                         )
                         ->pause(500)
                         ->saveNote()
