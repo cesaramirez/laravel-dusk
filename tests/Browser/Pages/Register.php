@@ -20,7 +20,8 @@ class Register extends BasePage
     /**
      * Assert that the browser is on the page.
      *
-     * @param  Browser  $browser
+     * @param Browser $browser
+     *
      * @return void
      */
     public function assert(Browser $browser)
@@ -29,20 +30,21 @@ class Register extends BasePage
     }
 
     /**
-     * Sign Up
-     * @param  \Laravel\Dusk\Browser $browser
-     * @param  string  $name
-     * @param  string  $email
-     * @param  string  $password
-     * @return void          
+     * Sign Up.
+     *
+     * @param \Laravel\Dusk\Browser $browser
+     * @param string                $name
+     * @param string                $email
+     * @param string                $password
+     *
+     * @return void
      */
     public function signUp(
           Browser $browser,
           $name = null,
           $email = null,
           $password = null
-        )
-    {
+        ) {
         $browser->type('@name', $name)
                 ->type('@email', $email)
                 ->type('@password', $password)

@@ -26,6 +26,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Note::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->unique()->text(5),
-        'body'  => $faker->sentence(5)
+        'body'  => $faker->sentence(5),
     ];
 });

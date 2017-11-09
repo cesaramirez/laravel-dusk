@@ -5,7 +5,6 @@ namespace Tests\Browser;
 use App\Note;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\Notes;
 use Tests\Browser\Pages\Register;
@@ -21,7 +20,7 @@ class NotesTest extends DuskTestCase
     public function aUserShouldSeeNoNotesWhenStartingTheirAccount()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new Register)
+            $browser->visit(new Register())
                     ->signUp('Antonio Muñoz', 'antonio@test.com', 'awesome')
                     ->assertPathIs('/home')
                     ->assertSee('No notes yet')
@@ -42,7 +41,7 @@ class NotesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->typeNote('One', 'Some body')
                     ->saveNote()
                     ->pause(500)
@@ -67,7 +66,7 @@ class NotesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->typeNote('One', 'There are five words here')
                     ->assertSee('Word count: 5');
         });
@@ -84,7 +83,7 @@ class NotesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->typeNote('One', 'First Note')
                     ->saveNote()
                     ->pause(500)
@@ -110,7 +109,7 @@ class NotesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->typeNote('One', 'First Note')
                     ->saveNote()
                     ->pause(500)
@@ -137,7 +136,7 @@ class NotesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->saveNote()
                     ->pause(500)
                     ->assertMissing('.uk-notification')
@@ -156,12 +155,12 @@ class NotesTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
         $note = factory(Note::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->browse(function (Browser $browser) use ($user, $note) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->pause(1000)
                     ->clickLink($note->title)
                     ->pause(500)
@@ -179,12 +178,12 @@ class NotesTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
         $notes = factory(Note::class, 2)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->browse(function (Browser $browser) use ($user, $notes) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->pause(500);
 
             foreach ($notes as $note) {
@@ -212,12 +211,12 @@ class NotesTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
         $note = factory(Note::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->browse(function (Browser $browser) use ($user, $note) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->pause(700)
                     ->clickLink($note->title)
                     ->pause(700)
@@ -237,12 +236,12 @@ class NotesTest extends DuskTestCase
         $user = factory(User::class)->create();
         $notes = factory(Note::class, 3)->create([
             'user_id'    => $user->id,
-            'updated_at' => Carbon::now()->subDays(2)
+            'updated_at' => Carbon::now()->subDays(2),
         ]);
 
         $this->browse(function (Browser $browser) use ($user, $notes) {
             $browser->loginAs($user)
-                    ->visit(new Notes)
+                    ->visit(new Notes())
                     ->pause(700)
                     ->screenshot('before_sorting');
 
@@ -250,7 +249,7 @@ class NotesTest extends DuskTestCase
                 $browser->clickLink($note->title)
                         ->pause(500)
                         ->typeNote(
-                            $newTitle = $note->title . ' updated',
+                            $newTitle = $note->title.' updated',
                             'Woo'
                         )
                         ->pause(500)

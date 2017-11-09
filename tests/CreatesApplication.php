@@ -22,7 +22,8 @@ trait CreatesApplication
     }
 
     /**
-     * Execute Artisan command migrate on set up test
+     * Execute Artisan command migrate on set up test.
+     *
      * @return void
      */
     public function setUp()
@@ -32,7 +33,8 @@ trait CreatesApplication
     }
 
     /**
-     * Execute Artisan command migrate:reset on finish test
+     * Execute Artisan command migrate:reset on finish test.
+     *
      * @return void
      */
     public function tearDown()
