@@ -20,7 +20,8 @@ class Notes extends BasePage
     /**
      * Assert that the browser is on the page.
      *
-     * @param  Browser  $browser
+     * @param Browser $browser
+     *
      * @return void
      */
     public function assert(Browser $browser)
@@ -29,11 +30,12 @@ class Notes extends BasePage
     }
 
     /**
-     * Type Note
+     * Type Note.
      *
-     * @param  \Laravel\Dusk\Browser $browser
-     * @param  string  $title
-     * @param  string  $body
+     * @param \Laravel\Dusk\Browser $browser
+     * @param string                $title
+     * @param string                $body
+     *
      * @return void
      */
     public function typeNote(Browser $browser, $title = null, $body = null)
@@ -43,8 +45,10 @@ class Notes extends BasePage
     }
 
     /**
-     * Save Note
-     * @param  \Laravel\Dusk\Browser $browser
+     * Save Note.
+     *
+     * @param \Laravel\Dusk\Browser $browser
+     *
      * @return void
      */
     public function saveNote(Browser $browser)

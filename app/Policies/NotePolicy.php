@@ -2,7 +2,8 @@
 
 namespace App\Policies;
 
-use App\{Note, User};
+use App\Note;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class NotePolicy
@@ -10,12 +11,12 @@ class NotePolicy
     use HandlesAuthorization;
 
     /**
-     * Policy on touch note
+     * Policy on touch note.
      *
-     * @param  \App\User   $user
-     * @param  \App\Note   $note
-     * 
-     * @return boolean
+     * @param \App\User $user
+     * @param \App\Note $note
+     *
+     * @return bool
      */
     public function touch(User $user, Note $note)
     {

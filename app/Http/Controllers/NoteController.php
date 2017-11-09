@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 class NoteController extends Controller
 {
     /**
-     * NoteController construct
+     * NoteController construct.
      */
     public function __construct()
     {
@@ -17,9 +17,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Index notes
+     * Index notes.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,22 +29,23 @@ class NoteController extends Controller
     }
 
     /**
-     * Store note
+     * Store note.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return Response
      */
     public function store(Request $request)
     {
         $this->validateNote($request);
+
         return $request->user()->notes()->create($request->only(['title', 'body']));
     }
 
     /**
-     * Show note
+     * Show note.
      *
-     * @param  \App\Note   $note
+     * @param \App\Note $note
      *
      * @return \Illuminate\Http\Response
      */
@@ -56,10 +57,10 @@ class NoteController extends Controller
     }
 
     /**
-     * Update note
+     * Update note.
      *
-     * @param  \App\Note                $note
-     * @param  \Illuminate\Http\Request $request
+     * @param \App\Note                $note
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -76,9 +77,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Destroy note
+     * Destroy note.
      *
-     * @param  \App\Note   $note
+     * @param \App\Note $note
      *
      * @return \Illuminate\Http\Response
      */
@@ -89,16 +90,16 @@ class NoteController extends Controller
     }
 
     /**
-     * Validate Note
+     * Validate Note.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Validation\Rule
      */
     protected function validateNote(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required'
+            'title' => 'required',
         ]);
     }
 }

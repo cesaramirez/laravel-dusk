@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get notes related
+     * Get notes related.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

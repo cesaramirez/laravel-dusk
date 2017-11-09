@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-
     /**
      * The accessors to append to the model's array form.
      *
@@ -21,11 +20,11 @@ class Note extends Model
      */
     protected $fillable = [
         'title',
-        'body'
+        'body',
     ];
 
     /**
-     * Scoped timestamp updated at
+     * Scoped timestamp updated at.
      *
      * @return void
      */
@@ -35,7 +34,7 @@ class Note extends Model
     }
 
     /**
-     * Get user related
+     * Get user related.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
