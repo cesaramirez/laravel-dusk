@@ -6238,9 +6238,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-filter@^0.2.0:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/vue-filter/-/vue-filter-0.2.1.tgz#598582f5309c60f43482462bb9485fe667d8a241"
+vue-filter@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vue-filter/-/vue-filter-0.2.2.tgz#ed4fd73870c0c831ae2a92f1f99b2c480e30f010"
   dependencies:
     underscore "^1.8.3"
 
