@@ -14,7 +14,7 @@
     "jquery": "^3.1.1",
     "laravel-mix": "^1.6",
     "lodash": "^4.17.4",
-    "vue": "^2.5.3"
+    "vue": "^2.5.4"
   },
   "dependencies": {
     "pluralize": "^7.0.0",
