@@ -457,16 +457,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v2.0.4",
+            "version": "v2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "1c702f428b4813cdb2ea92f1026f066cb0be90a2"
+                "reference": "29127c21d72ab5bff53ed3b8eb914c0059c77763"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/1c702f428b4813cdb2ea92f1026f066cb0be90a2",
-                "reference": "1c702f428b4813cdb2ea92f1026f066cb0be90a2",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/29127c21d72ab5bff53ed3b8eb914c0059c77763",
+                "reference": "29127c21d72ab5bff53ed3b8eb914c0059c77763",
                 "shasum": ""
             },
             "require": {
@@ -514,7 +514,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2017-09-12T18:46:34+00:00"
+            "time": "2017-10-09T16:10:59+00:00"
         },
         {
             "name": "laravel/framework",
