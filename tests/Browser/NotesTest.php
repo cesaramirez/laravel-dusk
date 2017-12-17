@@ -184,12 +184,12 @@ class NotesTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $notes) {
             $browser->loginAs($user)
                     ->visit(new Notes())
-                    ->pause(500);
+                    ->pause(700);
 
             foreach ($notes as $note) {
                 $browser->click('.notes .uk-list > li:nth-child(2)
                                  a:nth-child(2)')
-                        ->pause(700)
+                        ->pause(1000)
                         ->assertSeeIn(
                             '.uk-notification',
                             'Your note has been deleted.'
@@ -197,7 +197,7 @@ class NotesTest extends DuskTestCase
                         ->assertDontSeeIn('.notes', $note->title);
             }
 
-            $browser->pause(500)
+            $browser->pause(1000)
                     ->assertSeeIn('.notes', 'No notes yet');
         });
     }
@@ -217,9 +217,9 @@ class NotesTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $note) {
             $browser->loginAs($user)
                     ->visit(new Notes())
-                    ->pause(700)
+                    ->pause(1000)
                     ->clickLink($note->title)
-                    ->pause(700)
+                    ->pause(1000)
                     ->click('.notes .uk-list > li:nth-child(2) a:nth-child(2)')
                     ->assertInputValue('#title', $note->title)
                     ->assertInputValue('#body', $note->body);
