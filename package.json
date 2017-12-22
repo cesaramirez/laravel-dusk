@@ -19,7 +19,7 @@
   "dependencies": {
     "pluralize": "^7.0.0",
     "uikit": "^3.0.0-beta.34",
-    "vue-filter": "^0.2.2",
+    "vue-filter": "^0.2.3",
     "vuex": "^3.0.1"
   }
 }
