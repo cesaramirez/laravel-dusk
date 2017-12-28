@@ -189,7 +189,7 @@ class NotesTest extends DuskTestCase
             foreach ($notes as $note) {
                 $browser->click('.notes .uk-list > li:nth-child(2)
                                  a:nth-child(2)')
-                        ->pause(1000)
+                        ->pause(500)
                         ->assertSeeIn(
                             '.uk-notification',
                             'Your note has been deleted.'
