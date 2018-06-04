@@ -14,8 +14,6 @@ class NotesTest extends DuskTestCase
 {
     /**
      * @test A User Should See No Notes When Starting Their Account.
-     *
-     * @return void
      */
     public function aUserShouldSeeNoNotesWhenStartingTheirAccount()
     {
@@ -32,8 +30,6 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A User Can Save A New Note
-     *
-     * @return void
      */
     public function aUserCanSaveANewNote()
     {
@@ -57,8 +53,6 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A User Can See The Word Count Of Their Note
-     *
-     * @return void
      */
     public function aUserCanSeeTheWordCountOfTheirNote()
     {
@@ -74,8 +68,6 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A User Can Start A Fresh Note
-     *
-     * @return void
      */
     public function aUserCanStartAFreshNote()
     {
@@ -100,8 +92,6 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A Users Current Note Is Saved When Starting A New Note
-     *
-     * @return void
      */
     public function aUsersCurrentNoteIsSavedWhenStartingANewNote()
     {
@@ -127,8 +117,6 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A User Cant Save Note With No Title
-     *
-     * @return void
      */
     public function aUserCantSaveNoteWithNoTitle()
     {
@@ -148,8 +136,6 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A User Can Open A Previous Note
-     *
-     * @return void
      */
     public function aUserCanOpenAPreviousNote()
     {
@@ -171,12 +157,10 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A User Can Delete Notes
-     *
-     * @return void
      */
     public function aUserCanDeleteNotes()
     {
-        $user = factory(User::class)->create();
+        $user  = factory(User::class)->create();
         $notes = factory(Note::class, 2)->create([
             'user_id' => $user->id,
         ]);
@@ -204,8 +188,6 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A Users Note Is Cleared When Deleted If Currently Being Viewed
-     *
-     * @return void
      */
     public function aUsersNoteIsClearedWhenDeletedIfCurrentlyBeingViewed()
     {
@@ -217,9 +199,9 @@ class NotesTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $note) {
             $browser->loginAs($user)
                     ->visit(new Notes())
-                    ->pause(1000)
+                    ->pause(5000)
                     ->clickLink($note->title)
-                    ->pause(1000)
+                    ->pause(5000)
                     ->click('.notes .uk-list > li:nth-child(2) a:nth-child(2)')
                     ->assertInputValue('#title', $note->title)
                     ->assertInputValue('#body', $note->body);
@@ -228,12 +210,10 @@ class NotesTest extends DuskTestCase
 
     /**
      * @test A Users Notes Are Ordered By Last Updated In Descending Order
-     *
-     * @return void
      */
     public function aUsersNotesAreOrderedByLastUpdatedInDescendingOrder()
     {
-        $user = factory(User::class)->create();
+        $user  = factory(User::class)->create();
         $notes = factory(Note::class, 3)->create([
             'user_id'    => $user->id,
             'updated_at' => Carbon::now()->subDays(2),
