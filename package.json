@@ -13,7 +13,7 @@
     "lodash": "^4.17.10"
   },
   "dependencies": {
-    "cross-env": "^5.1.6",
+    "cross-env": "^5.2.0",
     "pluralize": "^7.0.0",
     "uikit": "^3.0.0-rc.4",
     "vue": "^2.5.16",
